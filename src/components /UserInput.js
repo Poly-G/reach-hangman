@@ -4,7 +4,6 @@ import { Button } from "reactstrap";
 
 export default class UserInput extends Component {
   state = {
-    input: "",
     guess: []
   };
 
@@ -14,13 +13,19 @@ export default class UserInput extends Component {
 
   handleclick = e => {
     e.preventDefault();
-    // this.setState({
-    //   input: e.target.value
-    // });
+
+    let target = e.target.innerHTML;
+    if (this.state.guess.indexOf(target) === -1) {
+      this.setState({
+        guess: [...this.state.guess, e.target.innerHTML]
+      });
+    }
+
     console.log(e.target.innerHTML);
   };
 
   render() {
+    console.log(this.state.guess);
     return (
       <div className="container">
         <div>
