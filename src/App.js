@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import axios from "axios";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import "./App.css";
+import UserInput from "./components /UserInput";
+
+class App extends React.Component {
+  state = {
+    words: [],
+    secretWord: []
+  };
+
+  // get request, split the data into an array
+  componentDidMount() {
+    axios
+      .get(
+        "https://cors-anywhere.herokuapp.com/http://app.linkedin-reach.io/words"
+      )
+      .then(res => {
+        const wordsArray = res.data.split("\n");
+        // find random array
+        let random = wordsArray[Math.floor(Math.random() * wordsArray.length)];
+        this.setState({ words: wordsArray, secretWord: random });
+      })
+      .catch(error => console.log(error));
+  }
+
+  render() {
+    const { secretWord } = this.state;
+
+    return (
+      <div className="App">
+        <p>{secretWord}</p>
+        <UserInput />
+      </div>
+    );
+  }
 }
 
 export default App;
