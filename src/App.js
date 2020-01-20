@@ -27,10 +27,11 @@ class App extends React.Component {
 
   render() {
     const { secretWord } = this.state;
-
+    const underscore = "_ ";
     return (
       <div className="App">
         <p>{secretWord}</p>
+        <p className="underscore">{underscore.repeat(secretWord.length)}</p>
         <UserInput />
       </div>
     );

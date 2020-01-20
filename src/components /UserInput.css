@@ -1,4 +1,19 @@
 .container {
-    background-color: #313148;
-    height: 200px;
+    background-color: #282c34;
+    height: 265px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.container div {
+    padding: 5px 0;
+}
+
+Button {
+    border-radius: 4px;
+    font-size: 25px;
+    height: 60px;
+    width: 60px;
+    margin: 8px;
 }
